@@ -1,0 +1,27 @@
+.player__exp {
+    display: inline-block;
+    border: 1px solid var(--primary-color);
+    padding: 2px;
+    width: 200px;
+}
+
+.player__image {
+    max-width: 200px;
+}
+.player__image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.player__exp-value {
+    max-width: 200px;
+    height: 8px;
+    background-color: var(--primary-color);
+}
+
+.player__experience {
+    display: block;
+    line-height: 1;
+    font-size: 12px;
+    max-width: 200px;
+}

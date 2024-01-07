@@ -44,3 +44,46 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+// minuty
+0,1 prestavka
+2 cela
+3,4 prestavka
+5 cela
+6,7 prestavka
+8 cela
+9,10 prestavka
+11 cela
+12,13 prestavka
+14 cela
+15,16 prestavka
+17 cela
+18,19 prestavka
+20 cela
+21,22 prestavka
+23 cela
+24,25 prestavka
+26 cela
+27,28 prestavka
+29 cela
+30,31 prestavka
+32 cela
+33,34 prestavka
+35 cela
+36,37 prestavka
+38 cela
+39,40 prestavka
+41 cela
+42,43 prestavka
+44 cela
+45,46 prestavka
+47 cela
+48,49 prestavka
+50 cela
+51,52 prestavka
+53 cela
+54,55 prestavka
+56 cela
+57,58 prestavka
+59 cela

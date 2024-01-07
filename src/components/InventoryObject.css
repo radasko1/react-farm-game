@@ -1,0 +1,33 @@
+.inventory-object__wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+.inventory-object__wrapper:last-child {
+    margin-bottom: 0;
+}
+
+.inventory-object__image {
+    max-width: 36px;
+    max-height: 36px;
+}
+
+.inventory-object__image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.inventory-object__content {
+    padding-left: 16px;
+    font-size: 12px;
+}
+
+.inventory-object__name {
+    font-size: 13px;
+}
+
+.inventory-object__count {
+    align-self: center;
+    padding-left: 12px;
+    font-size: 13px;
+}
