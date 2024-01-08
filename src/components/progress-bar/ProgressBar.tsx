@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
-import { PlayerNeedProps } from "./player-need-props.interface";
 import './ProgressBar.css';
 
-export class ProgressBar extends Component<PlayerNeedProps> {
-    render() {
-        const { title, value, maxValue, showValue = true } = this.props;
-        const barWidth = (value / maxValue) * 100;
+interface ProgressBarProps {
+    title: string;
+    value: number;
+    maxValue: number;
+    showValue?: boolean;
+}
+export function ProgressBar(props: ProgressBarProps) {
+    const { value, maxValue, showValue = true } = props;
 
-        const progressBarValue = (
-            <div className="progress-bar__value">{ value } / { maxValue }</div>
-        );
+    const progressBarValue = (
+        <div className="progress-bar__value">{ value } / { maxValue }</div>
+    );
 
-        return (
-            <div className="progress-bar__wrapper">
-                <div className="progress-bar__title">{title}</div>
-                <div className="progress-bar__bar">
-                    <div className="progress-bar__bar-value" style={{ width: `${barWidth}%` }}></div>
-                </div>
-                { showValue ? progressBarValue : null }
+    return (
+        <div className="progress-bar__wrapper">
+            <div className="progress-bar__title">{props.title}</div>
+            <div className="progress-bar__bar">
+                <div
+                    className="progress-bar__bar-value"
+                    style={{ width: `${(value / maxValue) * 100}%` }}
+                ></div>
             </div>
-        );
-    }
+            { showValue && progressBarValue }
+        </div>
+    );
 }

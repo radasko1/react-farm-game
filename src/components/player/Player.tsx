@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { PlayerLeveling } from '../../assets/leveling.const';
 import './Player.css';
 
@@ -14,15 +13,15 @@ interface PlayerProgress {
     maximalExperience: number;
 }
 
-export class Player extends Component<PlayerProps> {
+export function Player(props: PlayerProps) {
     /**
      * Calculate player progress in game
      * @return Player current level and remaining experience to the next level
      */
-    calculateProgress(): PlayerProgress {
+    const calculateProgress = (): PlayerProgress => {
         let level = 0,
             maximalExperience = 0,
-            experience = this.props.experience;
+            experience = props.experience;
 
         for (let i = 0; i < PlayerLeveling.length; i++) {
             if (experience > PlayerLeveling[i].maxExperience) {
@@ -41,27 +40,23 @@ export class Player extends Component<PlayerProps> {
         return { experience, level, maximalExperience };
     }
 
-    render() {
-        const { name, avatar } = this.props;
-        const { experience, level, maximalExperience } = this.calculateProgress();
-        const widthValue = (experience / maximalExperience) * 100;
+    const { experience, level, maximalExperience } = calculateProgress();
 
-        return (
-            <div className="player__wrapper">
-                <div className="player__name text-center">
-                    <b>{name}</b>
-                </div>
-                <div className="player__image">
-                    <img src={`/male-avatar/${avatar}.png`} alt={name}/>
-                </div>
-                <div className="player__level text-center">
-                    <b>úroveň {level}</b>
-                </div>
-                <div className="player__exp">
-                    <div className="player__exp-value" style={{ width: `${widthValue}%` }}></div>
-                </div>
-                <div className="player__experience text-center">{experience} / {maximalExperience}</div>
+    return (
+        <div className="player__wrapper">
+            <div className="player__name text-center">
+                <b>{props.name}</b>
             </div>
-        );
-    }
+            <div className="player__image">
+                <img src={`/male-avatar/${props.avatar}.png`} alt={props.name}/>
+            </div>
+            <div className="player__level text-center">
+                <b>úroveň {level}</b>
+            </div>
+            <div className="player__exp">
+                <div className="player__exp-value" style={{ width: `${(experience / maximalExperience) * 100}%` }}></div>
+            </div>
+            <div className="player__experience text-center">{experience} / {maximalExperience}</div>
+        </div>
+    );
 }

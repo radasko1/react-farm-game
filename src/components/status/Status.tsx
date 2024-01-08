@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import { ProgressBar } from "../progress-bar/ProgressBar";
 import { StatusState } from "./status-state.interface";
-
-
-interface PrisonTimeWorker {
-    type: "break" | "cell";
-    finishDate: Date;
-    startDate: Date;
-}
+import { PrisonTimeWorker } from "../../models/prison-tyme-worker.interface";
 
 export class Status extends Component<{}, StatusState> {
     state: Readonly<StatusState> = {

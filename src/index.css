@@ -17,7 +17,17 @@ code {
     monospace;
 }
 
-
+/* text-align: center */
 .text-center {
   text-align: center;
+}
+
+/* text-align: left */
+.ta-l {
+  text-align: left;
+}
+
+/* text-align: right */
+.ta-r {
+  text-align: right;
 }
