@@ -6,19 +6,21 @@ interface ProgressBarProps {
     maxValue: number;
     showValue?: boolean;
 }
+
 export function ProgressBar(props: ProgressBarProps) {
     const { value, maxValue, showValue = true } = props;
 
+    // TODO: can be re-rendered only this part of code?
     const progressBarValue = (
-        <div className="progress-bar__value">{ value } / { maxValue }</div>
+        <div className="progress-bar__description">{`${value} / ${maxValue}`}</div>
     );
 
     return (
-        <div className="progress-bar__wrapper">
+        <div className="progress-bar">
             <div className="progress-bar__title">{props.title}</div>
-            <div className="progress-bar__bar">
+            <div className="progress-bar__content">
                 <div
-                    className="progress-bar__bar-value"
+                    className="progress-bar__value-box"
                     style={{ width: `${(value / maxValue) * 100}%` }}
                 ></div>
             </div>

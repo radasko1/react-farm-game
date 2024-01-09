@@ -1,57 +1,99 @@
-import React, { useEffect, useState } from 'react';
+import moment from "moment";
+import React, { Component } from 'react';
 import { ProgressBar } from "../progress-bar/ProgressBar";
 import { API } from "../../constants/api";
-import { fetchFrom } from "../../functions/fetch-from.function";
 import { StatusTime } from "../../models/status.interface";
 
-export function Status() {
-    // after init fetch status and get info about current status
-    // render new data in component
-    // check if current timestamp insist to current status or next status - [from, to, type]
-    // calibrate date from response date
-    // if 'time' between >= <= 'from' and 'to', render this current status
-    // otherwise check for next status
 
-    // TODO: needs complex analysis and refactor
+export class Status extends Component {
+    private statusData: StatusTime | undefined;
+    private timer: any;
+    private updateTimer: any;
+    public state = {
+        totalTime: 100,
+        remainingTime: 0,
+        type: ''
+    };
 
-    const [remainingTime, setRemainingTime] = useState<number>(0); // changes very often
-    const [type, setType] = useState<string>('');
-    const [totalTime, setTotalTime] = useState<number>(100);
+    componentDidMount() {
+        this.fetchData().then((res) => {
+            // assign values from fetch response
+            if (!this.statusData) {
+                return;
+            }
 
-    // type and maxValue needs to be changed when migrate from one type to another
+            const data = this.statusData;
+            // console.log('time:', data.now, 'now:', moment().unix());
 
-    useEffect(() => {
-        const intervalFunction = async () => {
-            const response = await fetchFrom<StatusTime>(`${API.server}/time/status`);
-            updateTime(response);
-        };
+            this.setState({ type: data.currentStatus.type, totalTime: data.currentStatus.to - data.currentStatus.from });
+        });
 
-        // set up interval
-        const intervalId = setInterval(intervalFunction, 1000);
+        // update fetch data
+        this.updateTimer = setInterval(this.fetchData.bind(this), 1 * 60 * 1000); // change 1 -> 2
 
-        // cleanup interval
-        return () => clearInterval(intervalId);
-    });
+        // without bind() I don't have access to 'statusData'
+        this.timer = setInterval(this.checkForChanges.bind(this), 500);
+    }
 
-    function updateTime(status: StatusTime) {
-        //
-        if (status.now >= status.currentStatus.from && status.now <= status.currentStatus.to) {
-            setTotalTime(status.currentStatus.to - status.currentStatus.from);
-            setRemainingTime(status.currentStatus.to - status.now);
-            setType(status.currentStatus.type);
-        } else if (status.now >= status.nextStatus.from && status.now <= status.nextStatus.to) {
-            setTotalTime(status.nextStatus.to - status.nextStatus.from);
-            setRemainingTime(status.nextStatus.to - status.now);
-            setType(status.nextStatus.type);
+    componentWillUnmount() {
+        clearInterval(this.timer);
+        clearInterval(this.updateTimer);
+    }
+
+    async fetchData(): Promise<void> {
+        try {
+            const url = `${API.server}/time/status`;
+            const response = await fetch(url);
+            const json = await response.json();
+            this.statusData = json;
+        } catch (error) {
+            console.log("error", error);
         }
     }
 
-    return (
-        <ProgressBar
-            title={type}
-            value={remainingTime}
-            maxValue={totalTime}
-            showValue={false}
-        />
-    );
+    checkForChanges() {
+        if (!this.statusData) {
+            return;
+        }
+
+        // console.log(this.statusData);
+
+        // should be calibrated with fetch response
+        const now = moment().unix();
+        let untilTime = 0;
+
+        // 'now' === 'from'
+        if (now === this.statusData.currentStatus.from) {
+            this.setState({
+                type: this.statusData.currentStatus.type,
+                totalTime: this.statusData.currentStatus.to - this.statusData.currentStatus.from
+            });
+        } else if (now === this.statusData.nextStatus.from) {
+            this.setState({
+                type: this.statusData.nextStatus.type,
+                totalTime: this.statusData.nextStatus.to - this.statusData.nextStatus.from
+            });
+        }
+
+        // need to get data from actual status object
+        if (now >= this.statusData.currentStatus.from && now <= this.statusData.currentStatus.to) {
+            untilTime = this.statusData.currentStatus.to;
+        } else if (now >= this.statusData.nextStatus.from && now <= this.statusData.nextStatus.to) {
+            untilTime = this.statusData.nextStatus.to;
+        }
+
+        // calculate 'remainingTime'
+        this.setState({ remainingTime: untilTime - now });
+    }
+
+    render() {
+        return (
+            <ProgressBar
+                title={this.state.type}
+                value={this.state.remainingTime}
+                maxValue={this.state.totalTime}
+                showValue={false}
+            />
+        );
+    }
 }
