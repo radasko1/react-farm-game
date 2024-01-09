@@ -1,69 +1,57 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProgressBar } from "../progress-bar/ProgressBar";
-import { StatusState } from "./status-state.interface";
-import { PrisonTimeWorker } from "../../models/prison-tyme-worker.interface";
+import { API } from "../../constants/api";
+import { fetchFrom } from "../../functions/fetch-from.function";
+import { StatusTime } from "../../models/status.interface";
 
-export class Status extends Component<{}, StatusState> {
-    state: Readonly<StatusState> = {
-        type: '',
-        remainingTime: 0,
-        totalTime: 100,
-        startDate: new Date(),
-        finishDate: new Date(),
-    };
+export function Status() {
+    // after init fetch status and get info about current status
+    // render new data in component
+    // check if current timestamp insist to current status or next status - [from, to, type]
+    // calibrate date from response date
+    // if 'time' between >= <= 'from' and 'to', render this current status
+    // otherwise check for next status
 
-    private timeWorker: Worker | undefined = undefined;
-    private timer: NodeJS.Timer | undefined = undefined;
+    // TODO: needs complex analysis and refactor
 
-    componentDidMount() {
-        this.timeWorker = new Worker("prison-time.js");
-        this.timeWorker.onmessage = (e) => {
-            const data = e.data as PrisonTimeWorker;
+    const [remainingTime, setRemainingTime] = useState<number>(0); // changes very often
+    const [type, setType] = useState<string>('');
+    const [totalTime, setTotalTime] = useState<number>(100);
 
-            let type = '';
-            if (data.type === "cell") {
-                type = 'Vězení';
-            } else if (data.type === "break") {
-                type = 'Přestávka';
-            }
+    // type and maxValue needs to be changed when migrate from one type to another
 
-            // first get data, then assign in state
-            this.setState({
-                startDate: data.startDate,
-                finishDate: data.finishDate,
-                type: type,
-            })
+    useEffect(() => {
+        const intervalFunction = async () => {
+            const response = await fetchFrom<StatusTime>(`${API.server}/time/status`);
+            updateTime(response);
+        };
+
+        // set up interval
+        const intervalId = setInterval(intervalFunction, 1000);
+
+        // cleanup interval
+        return () => clearInterval(intervalId);
+    });
+
+    function updateTime(status: StatusTime) {
+        //
+        if (status.now >= status.currentStatus.from && status.now <= status.currentStatus.to) {
+            setTotalTime(status.currentStatus.to - status.currentStatus.from);
+            setRemainingTime(status.currentStatus.to - status.now);
+            setType(status.currentStatus.type);
+        } else if (status.now >= status.nextStatus.from && status.now <= status.nextStatus.to) {
+            setTotalTime(status.nextStatus.to - status.nextStatus.from);
+            setRemainingTime(status.nextStatus.to - status.now);
+            setType(status.nextStatus.type);
         }
-
-        this.timer = setInterval(this.updateTime.bind(this), 200);
     }
 
-    componentWillUnmount() {
-        this.timeWorker?.terminate();
-        clearInterval(this.timer);
-    }
-
-    updateTime() {
-        const startTimestamp = Math.floor(this.state.startDate.getTime() / 1000);
-        const finishTimestamp = Math.floor(this.state.finishDate.getTime() / 1000);
-        const currentTimestamp = Math.floor(new Date().getTime() / 1000);
-
-        this.setState({
-            totalTime: finishTimestamp - startTimestamp,
-            remainingTime: finishTimestamp - currentTimestamp
-        });
-
-        // TODO:prevent same value, is this handled in state?
-    }
-
-    render() {
-        return (
-            <ProgressBar
-                title={this.state.type}
-                value={this.state.remainingTime}
-                maxValue={this.state.totalTime}
-                showValue={false}
-            />
-        );
-    }
+    return (
+        <ProgressBar
+            title={type}
+            value={remainingTime}
+            maxValue={totalTime}
+            showValue={false}
+        />
+    );
 }
