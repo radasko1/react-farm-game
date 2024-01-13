@@ -8,38 +8,23 @@
 .app__grid {
     display: grid;
     grid-template-areas:
-            'player inventory cell'
-            'stats inventory . '
-            'skills inventory . ';
+            'player'
+            'field'
+            'field'
+            'inventory';
     gap: 8px;
 }
 
 .app__player-area {
     grid-area: player;
-    border: 1px solid #222;
+}
+
+.app__field-area {
+    grid-area: field;
+    border: 1px solid var(--primary-color);
     padding: 8px;
 }
 
-.app__inventory-area {
+.inventory-area {
     grid-area: inventory;
-    border: 1px solid #222;
-    padding: 8px;
-}
-
-.app__stats-area {
-    grid-area: stats;
-    border: 1px solid #222;
-    padding: 8px;
-}
-
-.app__skills-area {
-    grid-area: skills;
-    border: 1px solid #222;
-    padding: 8px;
-}
-
-.app__celltimer-area {
-    grid-area: cell;
-    border: 1px solid #222;
-    padding: 8px;
 }

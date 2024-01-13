@@ -1,3 +1,21 @@
+TODO
+
+~~- create Player component~~
+~~- create Farm Field component~~
+~~- create Farm Field Tile component~~
+  ~~- for sale status~~
+  ~~- empty status~~
+  ~~- grown status~~
+  ~~- occupied status~~
+~~- create Inventory component~~
+~~- create Inventory Object component~~
+- create Task Window component
+- create Task List component
+- create Task component
+
+- check how should be named components in React
+
+
 # Documentation
 
 Information about React, and how to use their features correctly.

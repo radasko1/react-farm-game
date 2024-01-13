@@ -1,3 +1,29 @@
+.player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.player__block {
+    border: 1px solid var(--primary-color);
+    padding: 8px;
+    min-height: 60px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.player__block:first-child {
+    margin-left: 0;
+}
+.player__block:last-child {
+    margin-right: 0;
+}
+
+.player__block--avatar {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 .player__exp {
     display: inline-block;
     border: 1px solid var(--primary-color);
@@ -6,7 +32,7 @@
 }
 
 .player__image {
-    max-width: 200px;
+    max-width: 40px;
 }
 .player__image img {
     max-width: 100%;

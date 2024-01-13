@@ -1,26 +1,17 @@
+import { GameInventorySlot } from "../../models/game-inventory-slot.interface";
 import './InventoryObject.css';
 
-interface InventoryObjectProps {
-    imageUrl: string;
-    name: string;
-    description: string;
-    count: number;
-}
+// TODO: 999 is max count for each item
 
-export function InventoryObject(props: InventoryObjectProps) {
-    const { imageUrl, name, description, count } = props;
+export function InventoryObject(props: GameInventorySlot) {
+    const { imageUrl, count } = props;
 
     return (
-        <div className="inventory-object__wrapper">
-            <div className="inventory-object__image">
-                {/* TODO: missing image */}
-                <img src={imageUrl} alt={name}/>
+        <div className="inventory-object pos-r cur-p d-f jc-c ai-c">
+            <div>
+                <img src={imageUrl} className="w-[50px]" />
             </div>
-            <div className="inventory-object__content">
-                <div className="inventory-object__name">{name}</div>
-                <div>{description}</div>
-            </div>
-            <div className="inventory-object__count">{count}x</div>
+            <div className="inventory-object__count pos-a">{count}</div>
         </div>
     );
 }

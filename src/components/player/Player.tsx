@@ -5,6 +5,7 @@ interface PlayerProps {
     name: string;
     experience: number;
     avatar: string;
+    money: number;
 }
 
 interface PlayerProgress {
@@ -43,20 +44,28 @@ export function Player(props: PlayerProps) {
     const { experience, level, maximalExperience } = calculateProgress();
 
     return (
-        <div className="player__wrapper">
-            <div className="player__name text-center">
-                <b>{props.name}</b>
+        <div className="player">
+            <div className="player__block player__block--avatar">
+                <div className="player__image">
+                    <img src={ `/male-avatar/${ props.avatar }.png` } alt={ props.name }/>
+                </div>
+                <div className="player__name">
+                    <b>{ props.name }</b>
+                </div>
             </div>
-            <div className="player__image">
-                <img src={`/male-avatar/${props.avatar}.png`} alt={props.name}/>
+            <div className="player__block d-f jc-c ai-c">
+                <div className="player__money">${props.money}</div>
             </div>
-            <div className="player__level text-center">
-                <b>úroveň {level}</b>
+            <div className="player__block">
+                <div className="player__level">
+                    <b>úroveň { level }</b>
+                </div>
+                <div className="player__exp">
+                    <div className="player__exp-value"
+                         style={ {width: `${ (experience / maximalExperience) * 100 }%`} }></div>
+                </div>
+                <div className="player__experience text-center">{ experience } / { maximalExperience }</div>
             </div>
-            <div className="player__exp">
-                <div className="player__exp-value" style={{ width: `${(experience / maximalExperience) * 100}%` }}></div>
-            </div>
-            <div className="player__experience text-center">{experience} / {maximalExperience}</div>
         </div>
     );
 }

@@ -1,5 +1,6 @@
 :root {
   --primary-color: #222;
+  --white: #fff;
 }
 
 body {
@@ -17,17 +18,54 @@ code {
     monospace;
 }
 
-/* text-align: center */
-.text-center {
-  text-align: center;
+img {
+  max-width: 100%;
+  height: auto;
 }
+
+
+
+/* text-align: center */
+.ta-c {text-align: center;}
 
 /* text-align: left */
-.ta-l {
-  text-align: left;
-}
+.ta-l {text-align: left;}
 
 /* text-align: right */
-.ta-r {
-  text-align: right;
-}
+.ta-r {text-align: right;}
+
+/* margin-left: 0 */
+.ml-0 {margin-left: 0;}
+
+/* display: block */
+.d-b {display: block;}
+
+/* display: flex */
+.d-f {display: flex;}
+
+/* display: grid */
+.d-g {display: grid;}
+
+/* justify-content: center */
+.jc-c {justify-content: center;}
+
+/* align-items: center */
+.ai-c {align-items: center;}
+
+/* cursor: pointer */
+.cur-p {cursor: pointer;}
+
+/* position: relative */
+.pos-r {position: relative;}
+
+/* position: absolute */
+.pos-a {position: absolute;}
+
+/* width: 100% */
+.w-full {width: 100%;}
+
+/* width: 50px */
+.w-\[50px\] {width: 50px;}
+
+/* width: 80px */
+.w-\[80px\] {width: 80px;}

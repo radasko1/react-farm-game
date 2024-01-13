@@ -4,10 +4,5 @@ export const PLAYER = {
     name: 'random-user-name-8546',
     experience: 0,
     avatar: '09',
-    health: 100,
-    maxHealth: 100,
-    strength: 0,
-    maxStrength: 100,
-    intelligence: 0,
-    maxIntelligence: 100,
+    money: 100,
 };

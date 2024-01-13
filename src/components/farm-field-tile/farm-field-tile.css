@@ -1,0 +1,31 @@
+.farm-field-tile {
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--primary-color);
+}
+/* TODO: only for occupied and empty state */
+.farm-field-tile:hover {
+    /* TODO: color is not palette */
+    background-color: #f2f2f2;
+}
+
+.farm-field-tile img {
+    height: 50px;
+}
+
+.farm-field-tile--for-sale {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.farm-field-tile__time {
+    position: absolute;
+    bottom: 0;
+    height: 14px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 10px;
+}

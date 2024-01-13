@@ -1,3 +1,4 @@
+// TODO: should be part of server
 export const PlayerLeveling = [
   { "level": 1, "maxExperience": 50 },
   { "level": 2, "maxExperience": 70 }, // 20
