@@ -1,4 +1,4 @@
-import { FarmFieldTile } from "../farm-field-tile/farm-field-tile.component";
+import { FarmFieldTile } from "../farm-field-tile/FarmFieldTile";
 import './farm-field.css';
 import { GAME_OBJECT_FARM_FIELD } from "../../assets/field.mock";
 

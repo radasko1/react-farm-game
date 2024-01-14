@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { InventoryObject } from "../inventory-object/InventoryObject";
+import { useEffect, useState } from "react";
+import { InventoryTile } from "../inventory-tile/InventoryTile";
 import { GameInventorySlot } from "../../models/game-inventory-slot.interface";
+import { useAppSelector } from "../../hooks/hooks";
 import './inventory.css';
 
 // TODO: get from server
@@ -11,12 +12,23 @@ const INVENTORY_LIST: GameInventorySlot[] = [
 
 export function Inventory() {
     const [isActive, setActive] = useState(false);
+    const selectedField = useAppSelector(state => state.selection.selectedFieldId);
+
+    // Open inventory after click on field with empty status, which is part of action to 'harvest crop'
+    useEffect(() => {
+        setActive(!!selectedField); // truthy value for 'active' state toggle
+    }, [selectedField]); // can be?
+
+    // Don't render component whether is not supposed to be visible
+    if (!isActive) {
+        return null;
+    }
+
+    const listItems = INVENTORY_LIST.map((inv) => (<InventoryTile key={inv.id} {...inv} />));
 
     return (
         <div className="inventory d-g">
-            { INVENTORY_LIST.map((inv) =>
-                (<InventoryObject key={inv.id} {...inv} />)
-            ) }
+            {listItems}
         </div>
     );
 }

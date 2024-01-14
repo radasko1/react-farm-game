@@ -44,8 +44,8 @@ export function Player(props: PlayerProps) {
     const { experience, level, maximalExperience } = calculateProgress();
 
     return (
-        <div className="player">
-            <div className="player__block player__block--avatar">
+        <div className="player d-f ai-c">
+            <div className="player__block d-f ai-c player__block--avatar">
                 <div className="player__image">
                     <img src={ `/male-avatar/${ props.avatar }.png` } alt={ props.name }/>
                 </div>
@@ -64,7 +64,7 @@ export function Player(props: PlayerProps) {
                     <div className="player__exp-value"
                          style={ {width: `${ (experience / maximalExperience) * 100 }%`} }></div>
                 </div>
-                <div className="player__experience text-center">{ experience } / { maximalExperience }</div>
+                <div className="player__experience d-b ta-c">{ experience } / { maximalExperience }</div>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import { Player } from "../player/Player";
 import { PLAYER } from "../../assets/player.mock";
-import { FarmField } from "../farm-field/farm-field.component";
+import { FarmField } from "../farm-field/FarmField";
 import './App.css';
 import { Inventory } from "../inventory/Inventory";
 

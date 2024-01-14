@@ -12,8 +12,17 @@ TODO
 - create Task Window component
 - create Task List component
 - create Task component
+- create Store Window component
+- create Store List component
+- create Store Item component
 
 - check how should be named components in React
+
+- check performance, if there's anything to improve or rewrite
+
+- is there special place to have requests?
+
+
 
 
 # Documentation
