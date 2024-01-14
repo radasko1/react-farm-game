@@ -14,6 +14,10 @@ export function Inventory() {
     const [isActive, setActive] = useState(false);
     const selectedField = useAppSelector(state => state.selection.selectedFieldId);
 
+    useEffect(() => {
+        // TODO: get all the inventory items from Redux
+    }, []);
+
     // Open inventory after click on field with empty status, which is part of action to 'harvest crop'
     useEffect(() => {
         setActive(!!selectedField); // truthy value for 'active' state toggle

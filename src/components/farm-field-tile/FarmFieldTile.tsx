@@ -7,6 +7,7 @@ import './farm-field-tile.css';
 
 export function FarmFieldTile(props: GameFieldInfo) {
     // TODO: mark active field where you put seed
+    // TODO: component needs to be re-rendered only when 'status' is OCCUPIED
 
     const dispatch = useAppDispatch(); // useDispatch
 
@@ -29,6 +30,7 @@ export function FarmFieldTile(props: GameFieldInfo) {
         dispatch(selectField(props.id)); // store action dispatch
     }
 
+    // TODO: add dialog to confirm you wanna buy this field, or maybe disable it until don't have enough money
     /** STATUS: FOR SALE */
     const fieldForSale = (
         <div className="farm-field-tile ov-h h-[80px] w-[80px] d-f pos-r cur-p ai-c jc-c ta-c farm-field-tile--for-sale" onClick={handleClick}>

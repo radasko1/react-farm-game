@@ -6,5 +6,5 @@ export async function fetchPost<T>(url: string, body: unknown) {
        },
        body: JSON.stringify(body), // ?
     });
-    return res.json();
+    return await res.json();
 }

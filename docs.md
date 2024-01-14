@@ -54,6 +54,8 @@ Cause that application is re-rendered - is rendered twice
 ## useEffect
 
 When 'deps' parameter is empty array, it means that effect will run only **once** after initial render (good for initialization)
+When fetching data, and some `props` parameters are used there (or any other), should be part of `deps`
+For better readability is recommended to use function with fetching inside `useEffect`
 
 ## useMemo
 
