@@ -9,7 +9,7 @@ export const fieldSlice = createSlice({
     name: 'field',
     initialState,
     reducers: {
-        updateList: (state, action: PayloadAction<GameField[]>) => {
+        updateFieldList: (state, action: PayloadAction<GameField[]>) => {
             state.list = action.payload;
         },
         updateItem: (state, action: PayloadAction<GameField>) => {
@@ -18,4 +18,4 @@ export const fieldSlice = createSlice({
     }
 });
 
-export const { updateList, updateItem } = fieldSlice.actions;
+export const { updateFieldList, updateItem } = fieldSlice.actions;

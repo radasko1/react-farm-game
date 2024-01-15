@@ -1,8 +1,6 @@
 import { GameFieldStatus } from "./game-field-status.enum";
 import { GamePlant } from "./game-plant.interface";
 
-// TODO: finish interface
-
 export interface GameField {
     id: string; // farm_field_(number)
     status: GameFieldStatus;

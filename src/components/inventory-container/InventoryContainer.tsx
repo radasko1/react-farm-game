@@ -5,13 +5,11 @@ import { InventoryList } from "../inventory-list/InventoryList";
 import { API } from "../../constants/api";
 import { updateInventoryList } from "../../reducers/inventory.reducer";
 
-import './inventory.css';
-
 export function InventoryContainer() {
     const { list, isVisible} = useAppSelector(state => state.inventory);
     const dispatch = useAppDispatch();
 
-    // Get all game inventory items from server
+    // Get all game inventory items from server (can be get outside)
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(`${API.server}/inventory`);
@@ -27,5 +25,9 @@ export function InventoryContainer() {
         return null;
     }
 
-    return (<InventoryList list={list} />);
+    return (
+        <div className="inventory">
+            <InventoryList list={list} />
+        </div>
+    );
 }

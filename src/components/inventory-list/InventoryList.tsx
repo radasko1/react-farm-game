@@ -1,6 +1,8 @@
 import { GameInventorySlot } from "../../models/game-inventory-slot.interface";
 import { InventoryItem } from "../inventory-item/InventoryItem";
 
+import './InventoryList.css';
+
 interface InventoryListProps {
     list: GameInventorySlot[];
 }

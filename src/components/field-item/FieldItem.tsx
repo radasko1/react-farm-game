@@ -15,8 +15,6 @@ export function FieldItem(props: GameField) {
 
     /** Click handler */
     function handleClick() {
-        console.log(props);
-
         // send crop id and farm field id to server
         // and server return updated farm field list?s
     }

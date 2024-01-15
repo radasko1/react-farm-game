@@ -14,13 +14,16 @@ export const selectionSlice = createSlice({
     name: 'selection',
     initialState,
     reducers: {
-        selectField: (state, action: PayloadAction<string | undefined>) => {
+        updateField: (state, action: PayloadAction<string | undefined>) => {
             state.selectedFieldId = action.payload
         },
-        selectPlant: (state, action: PayloadAction<string | undefined>) => {
+        updatePlant: (state, action: PayloadAction<string | undefined>) => {
             state.selectedPlantId = action.payload
+        },
+        resetSelection: (state, action: PayloadAction) => {
+            state = initialState;
         }
     }
 });
 
-export const { selectField, selectPlant } = selectionSlice.actions;
+export const { updateField, updatePlant, resetSelection } = selectionSlice.actions;

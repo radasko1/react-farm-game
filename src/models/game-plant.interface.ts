@@ -1,5 +1,3 @@
-// PlantGameObject, GameObjectPlant, ... ???
-
 export interface GamePlant {
     id: string; // game_object_(crop_name)
     label: string;
