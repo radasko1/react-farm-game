@@ -3,12 +3,12 @@ import { GamePlant } from "./game-plant.interface";
 
 // TODO: finish interface
 
-export interface GameFieldInfo {
+export interface GameField {
     id: string; // farm_field_(number)
-    crop: GamePlant | undefined; // different property name?
     status: GameFieldStatus;
-    time: number; // ? need it
-    // price?
-    from: number; // planted date
-    to: number; // grow date
+    // optional
+    crop?: GamePlant;
+    price?: number;
+    from?: number; // planted date
+    to?: number; // grow date
 }
