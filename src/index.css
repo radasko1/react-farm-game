@@ -81,3 +81,6 @@ img {
 
 /* border-width */
 .bdw-\[1px\] {border-width: 1px;}
+
+/* color */
+.c-white {color: var(--white);}

@@ -9,4 +9,5 @@ export interface GameField {
     price?: number;
     from?: number; // planted date
     to?: number; // grow date
+    time?: number; // only for one type
 }

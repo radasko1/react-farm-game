@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GameInventorySlot } from "../models/game-inventory-slot.interface";
 
-export interface InventoryReducerState {
+interface InventoryReducerState {
     isVisible: boolean;
     list: GameInventorySlot[];
 }

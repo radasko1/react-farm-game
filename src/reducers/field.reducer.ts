@@ -1,21 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { GameField } from "../models/game-field.interface";
+import { KeyValue } from "../models/key-value.interface";
 
-export interface FieldReducerState { list: GameField[]; }
+interface FieldReducerState {
+    list: KeyValue<GameField>;
+}
 
-const initialState: FieldReducerState = { list: [] }
+const initialState: FieldReducerState = {
+    list: {},
+};
 
 export const fieldSlice = createSlice({
     name: 'field',
     initialState,
     reducers: {
-        updateFieldList: (state, action: PayloadAction<GameField[]>) => {
+        updateFieldList: (state, action: PayloadAction<KeyValue<GameField>>) => {
             state.list = action.payload;
         },
-        updateItem: (state, action: PayloadAction<GameField>) => {
-            state.list = state.list.map((item) => item.id === action.payload.id ? action.payload : item);
+        updateFieldItem: (state, action: PayloadAction<GameField>) => {
+            const id = action.payload.id;
+            state.list[id] = action.payload;
         }
     }
 });
 
-export const { updateFieldList, updateItem } = fieldSlice.actions;
+export const { updateFieldList, updateFieldItem } = fieldSlice.actions;

@@ -13,13 +13,11 @@
 
 .farm-field-tile--for-sale {
     background-color: var(--primary-color);
-    color: var(--white);
     font-size: 40px;
     font-weight: 500;
 }
 
 .farm-field-tile__time {
     background-color: var(--primary-color);
-    color: var(--white);
     font-size: 10px;
 }

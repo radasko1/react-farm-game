@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface SelectionReducerState {
+interface SelectionReducerState {
     selectedFieldId?: string;
     selectedPlantId?: string;
 }
@@ -21,7 +21,8 @@ export const selectionSlice = createSlice({
             state.selectedPlantId = action.payload
         },
         resetSelection: (state, action: PayloadAction) => {
-            state = initialState;
+            state.selectedPlantId = undefined;
+            state.selectedFieldId = undefined;
         }
     }
 });
