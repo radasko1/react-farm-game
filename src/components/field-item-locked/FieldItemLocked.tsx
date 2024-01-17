@@ -5,7 +5,7 @@ import { GameField } from "../../models/game-field.interface";
 
 export const FieldItemLocked = React.memo((props: GameField) => {
         function handleClick() {
-            console.log('You can buy this field');
+            // console.log('You can buy this field');
         }
 
         return (

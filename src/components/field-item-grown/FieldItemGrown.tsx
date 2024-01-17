@@ -4,13 +4,13 @@ import { GameField } from "../../models/game-field.interface";
 import { APP_ROUTES } from "../../constants/app-routes";
 import { updateFieldItem } from "../../reducers/field.reducer";
 import { useAppDispatch } from "../../hooks/hooks";
-import { fetchPost } from "../../functions/fetch-post.fn";
+import { fetchFn } from "../../functions/fetch-post.fn";
 
 export const FieldItemGrown = React.memo((props: GameField) => {
         const dispatch = useAppDispatch();
 
         async function handleClick() {
-            const harvestField = await fetchPost(APP_ROUTES.FIELD_HARVEST, { id: props.id });
+            const harvestField = await fetchFn<GameField>(APP_ROUTES.FIELD_HARVEST, "PATCH", { id: props.id });
 
             dispatch(updateFieldItem(harvestField));
         }

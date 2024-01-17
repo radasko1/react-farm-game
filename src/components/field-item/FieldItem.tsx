@@ -5,6 +5,7 @@ import { formatTime } from "../../functions/time-formatter.fn";
 import { updateFieldItem,  } from "../../reducers/field.reducer";
 import { APP_ROUTES } from "../../constants/app-routes";
 import { useAppDispatch } from "../../hooks/hooks";
+import { fetchFn } from "../../functions/fetch-post.fn";
 
 import './FieldItem.css';
 
@@ -14,10 +15,9 @@ export function FieldItem(props: GameField) {
     // Check current time, and when field is READY, fetch for updates
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`${APP_ROUTES.FIELD_LIST}/${props.id}`);
-            const data = await res.json();
+            const field = await fetchFn<GameField>(`${APP_ROUTES.FIELD_ITEM}/${props.id}`, "GET");
 
-            dispatch(updateFieldItem(data));
+            dispatch(updateFieldItem(field));
         }
 
         if (props.time && props.to && props.time >= props.to) { // maybe just greater

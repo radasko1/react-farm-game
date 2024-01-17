@@ -10,7 +10,6 @@ export const FieldItemEmpty = React.memo((props: GameField) => {
 
         /** Select field to plant crop */
         function handleClick() {
-            console.log('handle click');
             dispatch(updateField(props.id));
             dispatch(showInventory());
         }

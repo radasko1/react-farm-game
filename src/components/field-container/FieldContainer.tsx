@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { APP_ROUTES } from "../../constants/app-routes";
 import { updateFieldItem, updateFieldList } from "../../reducers/field.reducer";
 import { resetSelection } from "../../reducers/selection.reducer";
-import { fetchPost } from "../../functions/fetch-post.fn";
+import { fetchFn } from "../../functions/fetch-post.fn";
+import { GameField } from "../../models/game-field.interface";
 
 export function FieldContainer() {
     const { selectedFieldId, selectedPlantId } = useAppSelector(state => state.selection);
@@ -27,7 +28,7 @@ export function FieldContainer() {
     // Send request to the server to change field
     useEffect(() => {
         async function updateField() {
-            const updatedField = await fetchPost(APP_ROUTES.FIELD_PLANT, { fieldId: selectedFieldId, plantId: selectedPlantId });
+            const updatedField = await fetchFn<GameField>(APP_ROUTES.FIELD_PLANT, "PATCH", { fieldId: selectedFieldId, plantId: selectedPlantId });
             dispatch(updateFieldItem(updatedField));
             dispatch(resetSelection());
         }
