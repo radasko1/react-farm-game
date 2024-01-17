@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { GameField } from "../../models/game-field.interface";
 import { formatTime } from "../../functions/time-formatter.fn";
 import { updateFieldItem,  } from "../../reducers/field.reducer";
-import { API } from "../../constants/api";
+import { APP_ROUTES } from "../../constants/app-routes";
 import { useAppDispatch } from "../../hooks/hooks";
 
 import './FieldItem.css';
@@ -14,7 +14,7 @@ export function FieldItem(props: GameField) {
     // Check current time, and when field is READY, fetch for updates
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`${API.server}/fields/${props.id}`);
+            const res = await fetch(`${APP_ROUTES.FIELD_LIST}/${props.id}`);
             const data = await res.json();
 
             dispatch(updateFieldItem(data));
@@ -32,7 +32,7 @@ export function FieldItem(props: GameField) {
     }
 
     return (
-        <div className="farm-field-tile ov-h h-[80px] w-[80px] pos-r d-f fxd-c jc-sb ai-c">
+        <div className="farm-field-tile bdrs-4px ov-h h-[80px] w-[80px] pos-r d-f fxd-c jc-sb ai-c">
             <img src="/icons/pumpkin.png" alt="icon" className="fxg-1"/>
             <div className="farm-field-tile__time c-white h-[14px] ta-c d-b w-full">{time()}</div>
         </div>

@@ -16,7 +16,7 @@ export const FieldItemEmpty = React.memo((props: GameField) => {
         }
 
         return (
-            <div className="farm-field-tile ov-h fft h-[80px] w-[80px] pos-r cur-p" onClick={handleClick}></div>
+            <div className="farm-field-tile bdrs-4px ov-h fft h-[80px] w-[80px] pos-r cur-p" onClick={handleClick}></div>
         );
     },
     (prevProps, nextProps) => prevProps.status === nextProps.status

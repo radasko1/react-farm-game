@@ -84,3 +84,6 @@ img {
 
 /* color */
 .c-white {color: var(--white);}
+
+/* border-radius */
+.bdrs-4px {border-radius: 4px;}

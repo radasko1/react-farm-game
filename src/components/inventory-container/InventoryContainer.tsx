@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { InventoryList } from "../inventory-list/InventoryList";
-import { API } from "../../constants/api";
+import { APP_ROUTES } from "../../constants/app-routes";
 import { updateInventoryList } from "../../reducers/inventory.reducer";
 
 export function InventoryContainer() {
@@ -12,7 +12,7 @@ export function InventoryContainer() {
     // Get all game inventory items from server (can be get outside)
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`${API.server}/inventory`);
+            const res = await fetch(APP_ROUTES.INVENTORY_BASE);
             const data = await res.json();
 
             dispatch(updateInventoryList(data));
@@ -25,9 +25,5 @@ export function InventoryContainer() {
         return null;
     }
 
-    return (
-        <div className="inventory">
-            <InventoryList list={list} />
-        </div>
-    );
+    return (<div className="inventory"><InventoryList list={list} /></div>);
 }
