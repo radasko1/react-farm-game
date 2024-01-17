@@ -29,6 +29,9 @@ export function FieldContainer() {
     useEffect(() => {
         async function updateField() {
             const updatedField = await fetchFn<GameField>(APP_ROUTES.FIELD_PLANT, "PATCH", { fieldId: selectedFieldId, plantId: selectedPlantId });
+            if (!updatedField) {
+                return;
+            }
             dispatch(updateFieldItem(updatedField));
             dispatch(resetSelection());
         }

@@ -2,10 +2,20 @@
 import React from "react";
 
 import { GameField } from "../../models/game-field.interface";
+import { fetchFn } from "../../functions/fetch-post.fn";
+import { APP_ROUTES } from "../../constants/app-routes";
+import { useAppDispatch } from "../../hooks/hooks";
+import { updateFieldItem } from "../../reducers/field.reducer";
 
 export const FieldItemLocked = React.memo((props: GameField) => {
-        function handleClick() {
-            // console.log('You can buy this field');
+        const dispatch = useAppDispatch();
+
+        async function handleClick() {
+            const updatedField = await fetchFn<GameField>(APP_ROUTES.FIELD_BUY, "PATCH", { id: props.id });
+            if (!updatedField) {
+                return;
+            }
+            dispatch(updateFieldItem(updatedField));
         }
 
         return (

@@ -16,7 +16,9 @@ export function FieldItem(props: GameField) {
     useEffect(() => {
         async function fetchData() {
             const field = await fetchFn<GameField>(`${APP_ROUTES.FIELD_ITEM}/${props.id}`, "GET");
-
+            if (!field) {
+                return;
+            }
             dispatch(updateFieldItem(field));
         }
 

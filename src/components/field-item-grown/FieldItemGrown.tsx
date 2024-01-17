@@ -11,7 +11,9 @@ export const FieldItemGrown = React.memo((props: GameField) => {
 
         async function handleClick() {
             const harvestField = await fetchFn<GameField>(APP_ROUTES.FIELD_HARVEST, "PATCH", { id: props.id });
-
+            if (!harvestField) {
+                return;
+            }
             dispatch(updateFieldItem(harvestField));
         }
 
