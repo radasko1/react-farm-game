@@ -1,22 +1,7 @@
-.farm-field-tile {
-    border: 1px solid var(--primary-color);
-}
-.fft:hover {
-    /* TODO: color is not palette */
-    background-color: #f2f2f2;
-}
-
 .farm-field-tile img {
     height: 50px;
 }
 
-.farm-field-tile--for-sale {
-    background-color: var(--primary-color);
-    font-size: 40px;
-    font-weight: 500;
-}
-
 .farm-field-tile__time {
-    background-color: var(--primary-color);
     font-size: 10px;
 }

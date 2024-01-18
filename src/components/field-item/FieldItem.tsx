@@ -34,9 +34,9 @@ export function FieldItem(props: GameField) {
     }
 
     return (
-        <div className="farm-field-tile bdrs-4px ov-h h-[80px] w-[80px] pos-r d-f fxd-c jc-sb ai-c">
+        <div className="farm-field-tile bdc-brown bgc-brown bdw-2px bds-solid ov-h w-full h-full pos-r d-f fxd-c jc-sb ai-c">
             <img src="/icons/pumpkin.png" alt="icon" className="fxg-1"/>
-            <div className="farm-field-tile__time c-white h-[14px] ta-c d-b w-full">{time()}</div>
+            <div className="farm-field-tile__time bgc-primary c-white h-[14px] ta-c d-b w-full">{time()}</div>
         </div>
     );
 }

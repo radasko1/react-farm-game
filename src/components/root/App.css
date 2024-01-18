@@ -1,7 +1,3 @@
-.app {
-    padding: 16px;
-}
-
 .app__grid {
     grid-template-areas:
             'player'

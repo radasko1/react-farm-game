@@ -7,7 +7,7 @@ import './App.css';
 
 export function App() {
     return (
-        <div className="app d-f jc-c ai-c">
+        <div className="game pos-a w-full h-full t-0 l-0 bgc-green d-f jc-c ai-c">
             <div className="app__grid d-g">
                 <div className="app__player-area">
                     <Player {...PLAYER} />

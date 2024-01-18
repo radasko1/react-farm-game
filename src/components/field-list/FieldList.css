@@ -1,7 +1,8 @@
 .farm-field__list {
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-auto-rows: 200px;
-    grid-auto-columns: 200px;
+    /*80px*/
+    grid-template-columns: repeat(8, calc(100/8 * 1%));
+    grid-template-rows: repeat(5, calc(100/5 * 1%));
     grid-gap: 8px;
+    width: 640px;
+    height: 400px;
 }

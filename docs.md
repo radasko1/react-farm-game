@@ -8,8 +8,6 @@ TODO
 - create Store List component
 - create Store Item component
 
-- check how should be named components in React
-
 - check performance, if there's anything to improve or rewrite
 
 - is there special place to have requests?
@@ -26,9 +24,8 @@ TODO
     - pass props to FieldTile component
     - use interval to re-render all wanted field (special status)
   - **FieldTile component**
-    - has interaction with lot of variants
+    - has interaction with a lot of variants
     - show data based on single prop
-    - 
 
 
 
@@ -55,6 +52,7 @@ For better performance and avoid bugs in event handlers in Component is good to 
 When using hooks, use state hook to handle each information separately.
 The `children` is part of `props` object
 Another component can be passed via `props` to component (there are no limitations on what you can pass as props in React)
+**Prop drilling** = pass data through several layer of component to reach the one 
 
 ## Fetch Data
 I've seen example, where they have custom hook to get data, which were assigned to constant in component
@@ -100,3 +98,19 @@ Benefit is organizing code into smaller pieces
 `const x = dummyFunc(a)(b); // (c) is parameter for 'b' function`
 
 Can be done with `compose()` function in more readable way
+
+## Controlled vs Uncontrolled
+Controlled = form data is handled by React component (handled state by user input change)
+Uncontrolled = form data is handled by DOM (the `input` element has `ref` attribute)
+
+
+## Functional programming
+
+Currying = 
+https://miro.medium.com/v2/resize:fit:576/1*OHN2sWFzuWY7gP_dqOQoeA.png
+https://miro.medium.com/v2/resize:fit:557/1*aTHu_4UDNiKH-0S_fu-Ddg.png
+
+---
+
+react context - hydration
+useffect and uselayouteffect

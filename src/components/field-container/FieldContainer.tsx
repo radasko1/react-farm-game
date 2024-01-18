@@ -7,6 +7,7 @@ import { updateFieldItem, updateFieldList } from "../../reducers/field.reducer";
 import { resetSelection } from "../../reducers/selection.reducer";
 import { fetchFn } from "../../functions/fetch-post.fn";
 import { GameField } from "../../models/game-field.interface";
+import { KeyValue } from "../../models/key-value.interface";
 
 export function FieldContainer() {
     const { selectedFieldId, selectedPlantId } = useAppSelector(state => state.selection);
@@ -16,11 +17,11 @@ export function FieldContainer() {
     // Get all game fields from server
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(APP_ROUTES.FIELD_LIST);
-            const data = await res.json();
-
-            // update Redux
-            dispatch(updateFieldList(data));
+            const list = await fetchFn<KeyValue<GameField>>(APP_ROUTES.FIELD_LIST, "GET");
+            if (!list) {
+                return;
+            }
+            dispatch(updateFieldList(list));
         }
         fetchData();
     }, []);

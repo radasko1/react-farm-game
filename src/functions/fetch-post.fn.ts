@@ -12,7 +12,7 @@ export async function fetchFn<T>(url: string, method: FetchMethod = "GET", body?
        headers: {
            'Content-Type': 'application/json',
        },
-       body: JSON.stringify(body), // ?
+       body: JSON.stringify(body),
     });
 
     if (!res.ok) {
