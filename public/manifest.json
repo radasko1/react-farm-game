@@ -1,6 +1,6 @@
 {
-  "short_name": "Prison Game",
-  "name": "Create React App Sample",
+  "short_name": "BrowserFarm",
+  "name": "BrowserFarm",
   "icons": [
     {
       "src": "favicon.ico",

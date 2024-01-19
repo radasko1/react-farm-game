@@ -10,4 +10,6 @@ export interface GameField {
     from?: number; // planted date
     to?: number; // grow date
     time?: number; // only for one type
+    //
+    onClick?: () => void;
 }

@@ -1,5 +1,11 @@
 import { PlayerLeveling } from '../../assets/leveling.const';
 import './Player.css';
+import { useEffect } from "react";
+import { fetchFn } from "../../functions/fetch-post.fn";
+import { GamePlayer } from "../../models/game-player.interface";
+import { APP_ROUTES } from "../../constants/app-routes";
+import { useAppDispatch } from "../../hooks/hooks";
+import { updatePlayer } from "../../reducers/player.reducer";
 
 interface PlayerProps {
     name: string;
@@ -14,7 +20,20 @@ interface PlayerProgress {
     maximalExperience: number;
 }
 
-export function Player(props: PlayerProps) {
+export function PlayerContainer(props: PlayerProps) {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        async function fetchData() {
+            const playerInfo= await fetchFn<GamePlayer>(APP_ROUTES.PLAYER_BASE, "GET");
+            if (!playerInfo) {
+                return;
+            }
+            dispatch(updatePlayer(playerInfo));
+        }
+        fetchData();
+    }, []);
+
     /**
      * Calculate player progress in game
      * @return Player current level and remaining experience to the next level
@@ -44,11 +63,8 @@ export function Player(props: PlayerProps) {
     const { experience, level, maximalExperience } = calculateProgress();
 
     return (
-        <div className="player d-f ai-c">
-            <div className="player__block d-f ai-c player__block--avatar">
-                <div className="player__image">
-                    <img src={ `/male-avatar/${ props.avatar }.png` } alt={ props.name }/>
-                </div>
+        <div className="d-f ai-c">
+            <div className="player__block p-8px bds-solid d-f ai-c player__block--avatar">
                 <div className="player__name">
                     <b>{ props.name }</b>
                 </div>

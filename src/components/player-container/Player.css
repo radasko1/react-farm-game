@@ -1,6 +1,5 @@
 .player__block {
     border: 1px solid var(--primary-color);
-    padding: 8px;
     min-height: 60px;
     margin-left: 4px;
     margin-right: 4px;
@@ -17,14 +16,6 @@
     border: 1px solid var(--primary-color);
     padding: 2px;
     width: 200px;
-}
-
-.player__image {
-    max-width: 40px;
-}
-.player__image img {
-    max-width: 100%;
-    height: auto;
 }
 
 .player__exp-value {

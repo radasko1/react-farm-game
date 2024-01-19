@@ -74,7 +74,7 @@ When accessing for some DOM element?
 Can be used for mutable objects.
 
 ## useContext
-When you want to subscribe for some data that can be accessible in whole application?
+When you want to subscribe for some data that can be accessible in whole application, but only from top-down way.
 
 ## useCallback
 
@@ -103,6 +103,12 @@ Can be done with `compose()` function in more readable way
 Controlled = form data is handled by React component (handled state by user input change)
 Uncontrolled = form data is handled by DOM (the `input` element has `ref` attribute)
 
+## S.O.L.I.D principles
+S - each component has one job?
+O - use composition over adding new features to the component
+L - extend component behaviour instead of override it
+I - 
+D - 
 
 ## Functional programming
 
